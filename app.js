@@ -11,6 +11,7 @@ var gammeRouter = require('./routes/gamme');
 var documentRouter = require('./routes/document');
 var moduleRouter = require('./routes/module');
 var composantRouter = require('./routes/composant');
+var clientRouter = require('./routes/client');
 
 var app = express();
 
@@ -46,6 +47,7 @@ app.use('/document', documentRouter);
 app.use('/module', moduleRouter);
 app.use('/composant', composantRouter);
 app.use('/gamme', gammeRouter);
+app.use('/client', clientRouter);
 
 
 module.exports = app;
