@@ -48,9 +48,9 @@ router.post('/addProjet', function(req, res, next){
 	models.projet.create({
         ref_pr: req.body.ref_pr,
         etat: req.body.etat,
-        crea_pr: req.body.crea_pr,
-        cons_pr: req.body.cons_pr,
-        clot_pr: req.body.clot_pr,
+        crea_pr: Date.now(),
+        cons_pr: '',
+        clot_pr: '',
         id_cl: req.body.id_cl
 	}).then(resultat => {
 		res.status(200).json(resultat);
