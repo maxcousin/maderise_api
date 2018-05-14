@@ -47,11 +47,12 @@ router.get('/getProjetById', function(req, res, next){
 router.post('/addProjet', function(req, res, next){
 	models.projet.create({
         ref_pr: req.body.ref_pr,
-        etat: req.body.etat,
+        etat: 'P',
         crea_pr: Date.now(),
         cons_pr: '',
         clot_pr: '',
-        id_cl: req.body.id_cl
+        type_pr: req.body.type_pr,
+        id_cl: (req.body.id_cl == null) ? null : req.body.id_cl,
 	}).then(resultat => {
 		res.status(200).json(resultat);
 	})
@@ -70,6 +71,7 @@ router.put('/setProjet', function(req, res, next){
         crea_pr: req.body.crea_pr,
         cons_pr: req.body.cons_pr,
         clot_pr: req.body.clot_pr,
+        type_pr: req.body.type_pr,
         id_cl: req.body.id_cl
 	}, {
 		where: {id_pr: req.body.id_pr}

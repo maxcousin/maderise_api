@@ -5,7 +5,8 @@ module.exports = function(sequelize, DataTypes) {
     id_mo: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     nature: {
       type: DataTypes.STRING(50),

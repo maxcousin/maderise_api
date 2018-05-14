@@ -97,14 +97,16 @@ router.get('/getAllNatures', function(req, res, next){
 
 /*****  GET module by projet  *****/
 
-router.get('/getModulesByProjet', function(req, res, next){
-    req.body.id_pr = 1;
+router.get('/getModulesByProjet/:id_pr', function(req, res, next){
+    //req.param.id_pr = 5;
+    ////id_pr = req.params.
+    //console.log(req);
     models.module.belongsTo(models.compose, {foreignKey: 'id_mo', targetKey:'id_mo'});
 	models.module.findAll({
         //attributes: [`id_mo`, `nature`, `ref_mo`, `long_mo`, `larg_mo`, `epai_mo`, `id_ga`, ['compose.id_pr']],
         include: [{
             model:models.compose,
-            where: {id_pr: req.body.id_pr},
+            where: {id_pr: req.params.id_pr},
         }]
 	}).then(function(result){
 		if(result == null){

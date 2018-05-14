@@ -5,7 +5,8 @@ module.exports = function(sequelize, DataTypes) {
     id_ga: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     ref_ga: {
       type: DataTypes.STRING(50),

@@ -5,7 +5,12 @@ module.exports = function(sequelize, DataTypes) {
     id_pr: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
+    },
+    ref_pr: {
+      type: DataTypes.STRING(50),
+      allowNull: true
     },
     etat: {
       type: DataTypes.STRING(50),
@@ -21,6 +26,10 @@ module.exports = function(sequelize, DataTypes) {
     },
     date_clot: {
       type: DataTypes.DATEONLY,
+      allowNull: true
+    },
+    type_pr: {
+      type: DataTypes.STRING(2),
       allowNull: true
     },
     id_cl: {
