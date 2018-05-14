@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 14 Mai 2018 à 20:25
+-- Généré le :  Sam 12 Mai 2018 à 15:08
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -44,24 +44,13 @@ CREATE TABLE `assemble` (
 --
 
 CREATE TABLE `client` (
-  `id_cl` int(11) NOT NULL,
+  `id_cl` int(11) NOT NULL AUTO_INCREMENT,
   `nom_cl` varchar(50) DEFAULT NULL,
   `prenom_cl` varchar(50) DEFAULT NULL,
   `tel_cl` varchar(20) DEFAULT NULL,
-  `mail_cl` varchar(50) DEFAULT NULL
+  `mail_cl` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id_cl`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Contenu de la table `client`
---
-
-INSERT INTO `client` (`id_cl`, `nom_cl`, `prenom_cl`, `tel_cl`, `mail_cl`) VALUES
-(1, NULL, NULL, NULL, NULL),
-(2, 'aa', 'aa', 'aa', 'aa'),
-(3, 'Alphonse', 'Brown', '0505', 'aa'),
-(4, NULL, NULL, NULL, NULL),
-(5, NULL, NULL, NULL, NULL),
-(6, 'aa', 'aa', 'aa', 'aa');
 
 -- --------------------------------------------------------
 
@@ -70,13 +59,14 @@ INSERT INTO `client` (`id_cl`, `nom_cl`, `prenom_cl`, `tel_cl`, `mail_cl`) VALUE
 --
 
 CREATE TABLE `composant` (
-  `id_co` int(11) NOT NULL,
+  `id_co` int(11) NOT NULL AUTO_INCREMENT,
   `famille` varchar(50) DEFAULT NULL,
   `ref_co` varchar(50) DEFAULT NULL,
   `long_co` float DEFAULT NULL,
   `larg_co` float DEFAULT NULL,
   `epai_co` float DEFAULT NULL,
-  `prix` float DEFAULT NULL
+  `prix` float DEFAULT NULL,
+  PRIMARY KEY (`id_co`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -99,8 +89,8 @@ CREATE TABLE `compose` (
 --
 
 INSERT INTO `compose` (`x_mo`, `y_mo`, `z_mo`, `modele_mo`, `id_mo`, `id_pr`) VALUES
-(0, 0, 0, '', 1, 5),
-(0, 0, 0, '', 2, 5);
+(0, 0, 0, '', 1, 1),
+(0, 0, 0, '', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -120,9 +110,10 @@ CREATE TABLE `cree` (
 --
 
 CREATE TABLE `devis` (
-  `id_de` int(11) NOT NULL,
+  `id_de` int(11) NOT NULL AUTO_INCREMENT,
   `date_crea` date DEFAULT NULL,
-  `id_pr` int(11) NOT NULL
+  `id_pr` int(11) NOT NULL,
+  PRIMARY KEY (`id_de`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -132,12 +123,13 @@ CREATE TABLE `devis` (
 --
 
 CREATE TABLE `document` (
-  `id_do` int(11) NOT NULL,
+  `id_do` int(11) NOT NULL AUTO_INCREMENT,
   `ref_do` varchar(50) DEFAULT NULL,
   `date_crea` date DEFAULT NULL,
   `type` varchar(50) DEFAULT NULL,
   `id_pr` int(11) NOT NULL,
-  `id_mo` int(11) NOT NULL
+  `id_mo` int(11) NOT NULL,
+  PRIMARY KEY (`id_do`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -147,10 +139,11 @@ CREATE TABLE `document` (
 --
 
 CREATE TABLE `fournisseur` (
-  `id_fo` int(11) NOT NULL,
+  `id_fo` int(11) NOT NULL AUTO_INCREMENT,
   `nom_fo` varchar(50) DEFAULT NULL,
   `tel_fo` varchar(20) DEFAULT NULL,
-  `mail_fo` varchar(50) DEFAULT NULL
+  `mail_fo` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id_fo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -160,9 +153,10 @@ CREATE TABLE `fournisseur` (
 --
 
 CREATE TABLE `gamme` (
-  `id_ga` int(11) NOT NULL,
+  `id_ga` int(11) NOT NULL AUTO_INCREMENT,
   `ref_ga` varchar(50) DEFAULT NULL,
-  `formule` text
+  `formule` text,
+  PRIMARY KEY (`id_ga`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -192,13 +186,14 @@ CREATE TABLE `maderises` (
 --
 
 CREATE TABLE `module` (
-  `id_mo` int(11) NOT NULL,
+  `id_mo` int(11) NOT NULL AUTO_INCREMENT,
   `nature` varchar(50) NOT NULL,
   `ref_mo` varchar(50) DEFAULT NULL,
   `long_mo` float DEFAULT NULL,
   `larg_mo` float DEFAULT NULL,
   `epai_mo` float DEFAULT NULL,
-  `id_ga` int(11) NOT NULL
+  `id_ga` int(11) NOT NULL,
+  PRIMARY KEY (`id_mo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -227,26 +222,23 @@ CREATE TABLE `produit` (
 --
 
 CREATE TABLE `projet` (
-  `id_pr` int(11) NOT NULL,
+  `id_pr` int(11) NOT NULL AUTO_INCREMENT,
   `ref_pr` varchar(50) DEFAULT NULL,
   `etat` varchar(50) DEFAULT NULL,
   `date_crea` date DEFAULT NULL,
   `date_cons` date DEFAULT NULL,
   `date_clot` date DEFAULT NULL,
-  `type_pr` varchar(2) NOT NULL,
-  `id_cl` int(11) DEFAULT NULL
+  `id_cl` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id_pr`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Contenu de la table `projet`
 --
 
-INSERT INTO `projet` (`id_pr`, `ref_pr`, `etat`, `date_crea`, `date_cons`, `date_clot`, `type_pr`, `id_cl`) VALUES
-(1, NULL, 'M', '2018-05-01', '2018-05-12', '2018-05-31', '', NULL),
-(2, NULL, 'C', '2017-12-13', '2018-04-25', '2018-05-03', '', NULL),
-(3, 'Test', 'P', NULL, NULL, NULL, '', NULL),
-(4, 'Test2', 'P', NULL, NULL, NULL, 'C', NULL),
-(5, 'Test3', 'P', NULL, NULL, NULL, 'C', NULL);
+INSERT INTO `projet` (`id_pr`, `etat`, `date_crea`, `date_cons`, `date_clot`, `id_cl`) VALUES
+(1, 'M', '2018-05-01', '2018-05-12', '2018-05-31', NULL),
+(2, 'C', '2017-12-13', '2018-04-25', '2018-05-03', NULL);
 
 -- --------------------------------------------------------
 
@@ -272,12 +264,13 @@ INSERT INTO `sequelizemeta` (`name`) VALUES
 --
 
 CREATE TABLE `utilisateur` (
-  `id_ut` int(11) NOT NULL,
+  `id_ut` int(11) NOT NULL AUTO_INCREMENT,
   `statut` varchar(1) NOT NULL,
   `nom_ut` varchar(50) NOT NULL,
   `prenom_ut` varchar(50) NOT NULL,
   `log` varchar(20) NOT NULL,
-  `mdp` varchar(500) NOT NULL
+  `mdp` varchar(500) NOT NULL,
+  PRIMARY KEY (`id_ut`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -298,17 +291,7 @@ ALTER TABLE `assemble`
   ADD PRIMARY KEY (`id_mo`,`id_co`),
   ADD KEY `FK_Assemble_id_co` (`id_co`);
 
---
--- Index pour la table `client`
---
-ALTER TABLE `client`
-  ADD PRIMARY KEY (`id_cl`);
 
---
--- Index pour la table `composant`
---
-ALTER TABLE `composant`
-  ADD PRIMARY KEY (`id_co`);
 
 --
 -- Index pour la table `compose`
@@ -328,28 +311,15 @@ ALTER TABLE `cree`
 -- Index pour la table `devis`
 --
 ALTER TABLE `devis`
-  ADD PRIMARY KEY (`id_de`),
   ADD KEY `FK_Devis_id_pr` (`id_pr`);
 
 --
 -- Index pour la table `document`
 --
 ALTER TABLE `document`
-  ADD PRIMARY KEY (`id_do`),
   ADD KEY `FK_Document_id_pr` (`id_pr`),
   ADD KEY `FK_Document_id_mo` (`id_mo`);
 
---
--- Index pour la table `fournisseur`
---
-ALTER TABLE `fournisseur`
-  ADD PRIMARY KEY (`id_fo`);
-
---
--- Index pour la table `gamme`
---
-ALTER TABLE `gamme`
-  ADD PRIMARY KEY (`id_ga`);
 
 --
 -- Index pour la table `maderises`
@@ -361,7 +331,6 @@ ALTER TABLE `maderises`
 -- Index pour la table `module`
 --
 ALTER TABLE `module`
-  ADD PRIMARY KEY (`id_mo`),
   ADD KEY `FK_Module_id_ga` (`id_ga`);
 
 --
@@ -375,7 +344,6 @@ ALTER TABLE `produit`
 -- Index pour la table `projet`
 --
 ALTER TABLE `projet`
-  ADD PRIMARY KEY (`id_pr`),
   ADD KEY `FK_Projet_id_cl` (`id_cl`);
 
 --
@@ -385,66 +353,16 @@ ALTER TABLE `sequelizemeta`
   ADD PRIMARY KEY (`name`),
   ADD UNIQUE KEY `name` (`name`);
 
---
--- Index pour la table `utilisateur`
---
-ALTER TABLE `utilisateur`
-  ADD PRIMARY KEY (`id_ut`);
 
 --
 -- AUTO_INCREMENT pour les tables exportées
 --
 
 --
--- AUTO_INCREMENT pour la table `client`
---
-ALTER TABLE `client`
-  MODIFY `id_cl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT pour la table `composant`
---
-ALTER TABLE `composant`
-  MODIFY `id_co` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT pour la table `devis`
---
-ALTER TABLE `devis`
-  MODIFY `id_de` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT pour la table `document`
---
-ALTER TABLE `document`
-  MODIFY `id_do` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT pour la table `fournisseur`
---
-ALTER TABLE `fournisseur`
-  MODIFY `id_fo` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT pour la table `gamme`
---
-ALTER TABLE `gamme`
-  MODIFY `id_ga` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
 -- AUTO_INCREMENT pour la table `maderises`
 --
 ALTER TABLE `maderises`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT pour la table `module`
---
-ALTER TABLE `module`
-  MODIFY `id_mo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT pour la table `projet`
---
-ALTER TABLE `projet`
-  MODIFY `id_pr` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT pour la table `utilisateur`
---
-ALTER TABLE `utilisateur`
-  MODIFY `id_ut` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- Contraintes pour les tables exportées
 --
